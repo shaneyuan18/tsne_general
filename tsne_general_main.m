@@ -1,14 +1,12 @@
 function varargout = tsne_general_main(varargin)
 % DESC:
-%   Display manual review result. This GUI is a supplement to 
-%   genx_cell_gallery_main
+%   Display computed t-sne results in a more user-friendly setting.
 %
 % VERSION:
-%   0.6 : The first release version. 
+%   0.5 : The first release version. 
 %
 % AUTHORS:
 %   Shane Yuan shane.yuan@epicsciences.com
-%   Jiyun Byun jiyun.byun@epicsciences.com
 % Edit the above text to modify the response to help tsne_general_main
 
 % Last Modified by GUIDE v2.5 24-Jul-2017 13:12:20
@@ -54,7 +52,7 @@ ghandles_general = handles;
 coi_size  = 78; %pixel length and width for cell images
 % folder for loading files
 load_base_dir = pwd;
-ver = 0.6;
+ver = 0.5;
 
 icon_zoom = convert_icon(imread(fullfile('icon','zoom.jpg')));
 icon_show = convert_icon(imread(fullfile('icon','show.jpg')));
@@ -115,11 +113,6 @@ set(ghandles_general.pushbutton_pan,'UserData',0);
 
 
 function [icon] = convert_icon(icon)
-% [r,c,d]=size(icon); 
-% x=ceil(r/30); 
-% y=ceil(c/30); 
-% g=icon(1:x:end,1:y:end,:);
-% g(g==255)=5.5*255;
 icon = imresize(icon,[30,30]);
 
 % --- Executes on button press in pushbutton_load.
@@ -131,7 +124,7 @@ global train_data;
 global load_base_dir;
 
 %check if the train_data already exist
-[file_name,path_name] = uigetfile(sprintf('%s\\*.mat',load_base_dir),'Load Cell Data');
+[file_name,path_name] = uigetfile(sprintf('%s\\*.mat',load_base_dir),'Load t-SNE Data');
 if file_name == 0
     return
 end
@@ -174,7 +167,7 @@ global color_data;
 % delete(items);
 %if no train_data is loaded, ask user to load first
 if isempty(train_data)
-    errordlg('Please load cell data first','Error');
+    errordlg('Please load t-SNE data first','Error');
     return
 end
 
