@@ -8,9 +8,6 @@ curr_dir = pwd;
 cd ..
 base_dir = pwd;
 cd(curr_dir);
-addpath(genpath(fullfile(base_dir,'functions','utils')));
-addpath(genpath(fullfile(base_dir,'functions','image_processing')));
-addpath(genpath(fullfile(base_dir,'functions','feature_extraction')));
 addpath(genpath(fullfile(base_dir,'thirdparty')));
 
-fprintf('\nSet paths for CLC Cell Gallery\n');
+fprintf('\nSet paths for t-SNE General Tool\n');
